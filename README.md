@@ -1,6 +1,6 @@
 # Inertia example project
 
-Stack: Laravel 10 + Vue 3 (Composition)
+Stack: Laravel 10 + InertiaJS + Vue 3 (Composition)
 
 Styles are based on [Breeze](https://laravel.com/docs/10.x/starter-kits#breeze-and-inertia),
 [TailwindCSS](https://tailwindcss.com/) 
