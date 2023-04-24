@@ -59,7 +59,7 @@ class UsersController extends Controller
 
         $user->saveMedia('avatar', 'avatar');
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        return redirect()->route('admin.users.index')->success('User created successfully');
     }
 
     public function edit(User $user)
@@ -93,7 +93,7 @@ class UsersController extends Controller
 
         $user->saveMedia('avatar', 'avatar');
 
-        return redirect()->route('admin.users.edit', $user)->with('success', 'User updated successfully');
+        return redirect()->route('admin.users.edit', $user)->success('User updated successfully');
     }
 
     public function destroy(User $user)
@@ -102,6 +102,6 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.users.index')->success('User deleted successfully');
     }
 }

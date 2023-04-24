@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +23,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        RedirectResponse::macro('success', function ($message) {
+            return $this->with('success', $message);
+        });
+        RedirectResponse::macro('error', function ($message) {
+            return $this->with('error', $message);
+        });
+        RedirectResponse::macro('warning', function ($message) {
+            return $this->with('warning', $message);
+        });
+        RedirectResponse::macro('info', function ($message) {
+            return $this->with('info', $message);
+        });
     }
 }

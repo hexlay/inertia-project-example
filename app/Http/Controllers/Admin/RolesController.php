@@ -42,7 +42,7 @@ class RolesController extends Controller
 
         $this->rolesService->syncPermissions($validated, $role);
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role created successfully');
+        return redirect()->route('admin.roles.index')->success('Role created successfully');
     }
 
     public function create()
@@ -61,7 +61,7 @@ class RolesController extends Controller
         $this->authorize('update', Role::class);
 
         if (in_array($role->name, Role::BASE_ROLES)) {
-            return redirect()->route('admin.roles.index')->with('error', 'Unable to update base roles');
+            return redirect()->route('admin.roles.index')->success('Unable to update base roles');
         }
 
         $role->load('permissions');
@@ -79,7 +79,7 @@ class RolesController extends Controller
         $this->authorize('update', Role::class);
 
         if (in_array($role->name, Role::BASE_ROLES)) {
-            return redirect()->route('admin.roles.index')->with('error', 'Unable to update base roles');
+            return redirect()->route('admin.roles.index')->error('Unable to update base roles');
         }
 
         $validated = $request->validated();
@@ -88,7 +88,7 @@ class RolesController extends Controller
 
         $this->rolesService->syncPermissions($validated, $role);
 
-        return redirect()->route('admin.roles.edit', $role)->with('success', 'Role updated successfully');
+        return redirect()->route('admin.roles.edit', $role)->success('Role updated successfully');
     }
 
     public function destroy(Role $role)
@@ -96,11 +96,11 @@ class RolesController extends Controller
         $this->authorize('delete', $role);
 
         if (in_array($role->name, Role::BASE_ROLES)) {
-            return redirect()->route('admin.roles.index')->with('error', 'Unable to delete base roles');
+            return redirect()->route('admin.roles.index')->error('Unable to delete base roles');
         }
 
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('admin.roles.index')->success('Role deleted successfully');
     }
 }

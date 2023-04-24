@@ -67,6 +67,9 @@ class HandleInertiaRequests extends Middleware
         } else if ($session->has('success')) {
             $flashMessage['text'] = $session->get('success');
             $flashMessage['type'] = 'success';
+        } else if ($session->has('info')) {
+            $flashMessage['text'] = $session->get('info');
+            $flashMessage['type'] = 'info';
         } else {
             return null;
         }
