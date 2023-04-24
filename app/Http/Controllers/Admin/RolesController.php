@@ -60,6 +60,10 @@ class RolesController extends Controller
     {
         $this->authorize('update', Role::class);
 
+        if (in_array($role->name, Role::BASE_ROLES)) {
+            return redirect()->route('admin.roles.index')->with('error', 'Unable to update base roles');
+        }
+
         $role->load('permissions');
 
         $permissions = Permission::all();
@@ -74,6 +78,10 @@ class RolesController extends Controller
     {
         $this->authorize('update', Role::class);
 
+        if (in_array($role->name, Role::BASE_ROLES)) {
+            return redirect()->route('admin.roles.index')->with('error', 'Unable to update base roles');
+        }
+
         $validated = $request->validated();
 
         $role->update($validated);
@@ -87,7 +95,7 @@ class RolesController extends Controller
     {
         $this->authorize('delete', $role);
 
-        if (in_array($role->name, ['Admin', 'User'])) {
+        if (in_array($role->name, Role::BASE_ROLES)) {
             return redirect()->route('admin.roles.index')->with('error', 'Unable to delete base roles');
         }
 
