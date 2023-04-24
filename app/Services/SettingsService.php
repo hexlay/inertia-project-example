@@ -23,7 +23,7 @@ class SettingsService
     {
         $settings = self::get();
         $settings->update($attributes);
-        $settings->saveMedia($attributes['logo'], 'logo');
+        $settings->saveMedia('logo', 'logo');
     }
 
 }
